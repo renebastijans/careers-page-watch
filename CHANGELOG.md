@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.1.0 (draft, not yet released)
+## 0.1.0 (2026-11-08)
 
-First public-ready version.
+First public version.
 
 - Standalone scan, ad-text reading and markdown report for Greenhouse, Ashby and Lever boards (Workable, SmartRecruiters and Teamtailor experimental), with no packages and no account.
 - Location rules from `search.json`: eligible places, wider phrases (EU, EMEA), maximum office days. The report quotes the line from the ad that decides, and says `[verify location]` when the ad is silent.
@@ -13,3 +13,5 @@ First public-ready version.
 - `find_board.py`: finds a company's job board system and board name from its careers page address (including boards loaded by JavaScript) or from its name, and shows the first job titles to confirm it is the right company.
 - Mac guide for first-time users, double-click launcher, plain-language error messages, uninstall guide.
 - Tests run offline; an opt-in live smoke test checks the three supported APIs.
+
+Known limits: tested on macOS only (Windows untested); it reads English-language ads, so other languages mostly come out as `[verify location]`; Workable, SmartRecruiters and Teamtailor are experimental and tested on one or two live boards each.
