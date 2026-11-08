@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:tt="https://teamtailor.com/locations">
+  <channel>
+    <title>Example</title>
+    <item>
+      <title>Senior Researcher</title>
+      <description>&lt;p&gt;Fully remote within the EU.&lt;/p&gt;</description>
+      <pubDate>Wed, 30 Sep 2026 11:48:43 +0100</pubDate>
+      <link>https://careers.example.com/jobs/1-senior-researcher</link>
+      <remoteStatus>fully</remoteStatus>
+      <tt:locations>
+        <tt:location><tt:city>Madrid</tt:city><tt:country>Spain</tt:country></tt:location>
+      </tt:locations>
+    </item>
+    <item>
+      <title>Office Manager</title>
+      <description>&lt;p&gt;On site.&lt;/p&gt;</description>
+      <link>https://careers.example.com/jobs/2-office-manager</link>
+      <remoteStatus>none</remoteStatus>
+      <tt:locations/>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,7 @@
+{"offset":0,"limit":100,"totalFound":2,"content":[
+{"id":"111000000000001","name":"Senior Researcher","releasedDate":"2026-01-02T10:00:00.000Z",
+ "location":{"city":"Madrid","country":"es","remote":false,"hybrid":true,"fullLocation":"Madrid, Spain"},
+ "company":{"identifier":"examplecorp","name":"Example Corp"},"ref":"https://api.smartrecruiters.com/v1/companies/examplecorp/postings/111000000000001"},
+{"id":"111000000000002","name":"Account Executive","releasedDate":"2026-01-03T10:00:00.000Z",
+ "location":{"city":"Berlin","country":"de","remote":true,"fullLocation":"Berlin, Germany"},
+ "company":{"identifier":"examplecorp","name":"Example Corp"},"ref":"x"}]}

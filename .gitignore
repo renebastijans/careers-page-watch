@@ -1,0 +1,6 @@
+# Your private data (searches, seen ads, reports) never goes in the repo
+data/
+*.bak
+.DS_Store
+__pycache__/
+.env

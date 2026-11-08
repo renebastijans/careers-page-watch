@@ -1,0 +1,8 @@
+{"name":"Example Co","description":"<p>About us</p>","jobs":[
+{"title":"Senior Researcher - EMEA Remote","shortcode":"AAA111","code":"","employment_type":"Full-time","department":"Product",
+ "url":"https://apply.workable.com/j/AAA111","shortlink":"https://apply.workable.com/j/AAA111","application_url":"https://apply.workable.com/j/AAA111/apply",
+ "published_on":"2026-01-02","created_at":"2026-01-02","country":"France","city":"","state":"","telecommuting":true,
+ "locations":[{"country":"France","countryCode":"FR","city":"","region":null,"hidden":true}],
+ "description":"<p>We offer flexible working hours and remote options.</p><p>While we have offices in two cities, we are very distributed.</p>"},
+{"title":"Account Executive","shortcode":"BBB222","url":"https://apply.workable.com/j/BBB222","published_on":"2026-01-03","country":"United States","telecommuting":false,
+ "locations":[{"country":"United States","city":"New York","hidden":false}],"description":"<p>On-site in New York.</p>"}]}

@@ -1,0 +1,46 @@
+{
+ "1": {
+  "label": "Role and level",
+  "text": "Which job titles do you want, and at what level (senior, lead, head of)?"
+ },
+ "2": {
+  "label": "Titles to skip",
+  "text": "Which look-alike titles should I ignore? Say 'none' to skip."
+ },
+ "3": {
+  "label": "Sectors",
+  "text": "Which sectors or kinds of company are you after (for example SaaS, fintech, climate, developer tools), and what size or stage (startup, scale-up, enterprise)?"
+ },
+ "3b": {
+  "label": "Exclusions",
+  "text": "Is there any sector or company you won't work for? For example 'no gambling or defence', or company names. Say 'none' to skip."
+ },
+ "4": {
+  "label": "Location and work mode",
+  "text": "Which places can you work from (cities or countries), and do you want remote, hybrid or office roles?"
+ },
+ "5": {
+  "label": "Office days",
+  "text": "What is the most office days a week you would accept? Use 0 for fully remote."
+ },
+ "6": {
+  "label": "Offer the schedule",
+  "text": "At what time of day should it run? For example 08:00 or 09:30; the app adds a short delay."
+ },
+ "7": {
+  "label": "Closing message (always)",
+  "text": "Setup complete"
+ },
+ "8": {
+  "label": "How often",
+  "text": "How often should careers-page-watch run? Every weekday (the default), once a week (which day), or another rhythm?"
+ },
+ "9": {
+  "label": "Anything else",
+  "text": "Is there anything else that rules a job in or out? For example: you need visa sponsorship, you can't relocate, or you won't travel more than 10%. Say 'nothing' to skip."
+ },
+ "10": {
+  "label": "Employers to watch",
+  "text": "The starter list has these employers: <the names from that file>. Which employers do you want watched? (a) the starter list only, (b) the starter list plus your own, or (c) only your own. You can add or remove employers at any time, so there is no pressure to name many now."
+ }
+}

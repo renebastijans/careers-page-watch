@@ -1,0 +1,12 @@
+{
+  "title_regex": "research|insight",
+  "title_exclude_regex": "security|vulnerab|penetration",
+  "eligible_places": ["YourCountry", "YourCity"],
+  "place_synonyms": ["Europe", "European", "EU", "EMEA", "worldwide", "anywhere"],
+  "max_office_days": 2,
+  "pay_floor": null,
+  "pay_currency": "EUR",
+  "report_email_to": null,
+  "email_when_quiet": true,
+  "request_delay_seconds": 1.0
+}
