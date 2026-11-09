@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Optional `custom_boards.py` in your data folder lets you add your own reader for employers on other systems (see `docs/own-instance.md`).
+
 ## 0.1.0 (2026-11-08)
 
 First public version.

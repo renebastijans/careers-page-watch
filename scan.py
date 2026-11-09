@@ -3,7 +3,7 @@
 Reads data/companies.csv and data/search.json; writes candidates.json (title hits),
 scan-state.json (every URL seen per board, for closed-ad detection) and scan-log.txt.
 One scan a day is the intended use; requests are sequential and spaced out."""
-import csv, json, re, sys
+import csv, importlib.util, json, re, sys
 import xml.etree.ElementTree as ET
 from urllib.parse import quote, unquote
 import common, enrich
@@ -101,6 +101,23 @@ def fetch_jobs(ats, slug, cfg):
         return parse_teamtailor(common.get(board_url(ats, slug), cfg))
     return PARSERS[ats](json.loads(common.get(board_url(ats, slug), cfg)))
 
+def load_custom_boards(data):
+    """Optional user code: data/custom_boards.py with BOARDS = {"<ats value>": fetch(name, slug, cfg) -> [job dicts]}.
+    Job dicts have the same keys as the built-in parsers (title, location, remote, url, posted; optional description).
+    Built-in boards cannot be replaced. Returns {} when the file is absent."""
+    f = data / "custom_boards.py"
+    if not f.exists():
+        return {}
+    spec = importlib.util.spec_from_file_location("custom_boards", f)
+    mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+    boards = getattr(mod, "BOARDS", None)
+    if not isinstance(boards, dict) or not all(callable(v) for v in boards.values()):
+        raise common.ConfigError("custom_boards.py must define BOARDS = {'<ats value>': function(name, slug, cfg)}")
+    clash = set(boards) & (SCANNED | EXPERIMENTAL | NOT_SCANNED | {"browser"})
+    if clash:
+        raise common.ConfigError(f"custom_boards.py cannot replace built-in board types: {', '.join(sorted(clash))}")
+    return boards
+
 def title_hits(jobs, title_re):
     rx = re.compile(title_re, re.I)
     return [j for j in jobs if j.get("title") and j.get("url") and rx.search(j["title"])]
@@ -112,6 +129,7 @@ def read_companies(path):
 def main():
     data = common.data_dir(); cfg = common.load_config()
     rows = read_companies(data / "companies.csv")
+    custom = load_custom_boards(data)
     cands, state, log = [], {}, []
     for r in rows:
         name, ats, slug = r["name"], r["ats"], r["slug"]
@@ -119,16 +137,16 @@ def main():
             log.append(f"{name}: CHECK BY HAND ({slug or 'no address saved'})"); continue
         if ats in NOT_SCANNED:
             log.append(f"{name}: SKIPPED (ats={ats})"); continue
-        if ats not in SCANNED | EXPERIMENTAL:
+        if ats not in SCANNED | EXPERIMENTAL | set(custom):
             log.append(f"{name}: SKIPPED (ats={ats} is not supported)"); continue
         try:
-            jobs = fetch_jobs(ats, slug, cfg)
+            jobs = custom[ats](name, slug, cfg) if ats in custom else fetch_jobs(ats, slug, cfg)
         except Exception as e:
             log.append(f"{name}: FAILED ({type(e).__name__}: {e})"); continue
         hits = title_hits(jobs, cfg["title_regex"])
         state[name] = [j["url"] for j in jobs if j.get("url")]
         cands += [dict(j, company=name, sector=r["sector"], ats=ats, slug=slug) for j in hits]
-        log.append(f"{name}: {len(jobs)} roles, {len(hits)} title hits" + (" (experimental)" if ats in EXPERIMENTAL else "")
+        log.append(f"{name}: {len(jobs)} roles, {len(hits)} title hits" + (" (experimental)" if ats in EXPERIMENTAL else " (custom)" if ats in custom else "")
                    + (" (0 roles: check the company identifier, a wrong one also returns 0)" if ats == "smartrecruiters" and not jobs else ""))
     (data / "candidates.json").write_text(json.dumps(cands, ensure_ascii=False, indent=1), encoding="utf-8")
     (data / "scan-state.json").write_text(json.dumps(state), encoding="utf-8")
