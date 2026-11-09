@@ -95,7 +95,7 @@ def run_main(fn):
 
 _last = [0.0]
 
-def get(url, cfg, data=None, timeout=30):
+def get(url, cfg, timeout=30):
     """One GET with a plain user agent, spaced by request_delay_seconds. Returns text."""
     wait = cfg["request_delay_seconds"] - (time.monotonic() - _last[0])
     if wait > 0:
