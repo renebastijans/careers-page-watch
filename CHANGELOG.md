@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Fix: an empty `title_exclude_regex` ("") no longer drops every ad as "not-research"; empty now means no exclusions.
 - Optional `custom_boards.py` in your data folder lets you add your own reader for employers on other systems (see `docs/own-instance.md`).
 
 ## 0.1.0 (2026-11-08)

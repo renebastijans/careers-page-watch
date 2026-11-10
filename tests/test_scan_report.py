@@ -84,6 +84,15 @@ class Classify(unittest.TestCase):
     def c(self, lines, title="Senior Researcher"):
         return {"title": title, "policy_lines": lines}
 
+    def test_empty_exclude_regex_excludes_nothing(self):
+        cfg = dict(CFG, title_exclude_regex="")
+        self.assertEqual(report.classify(self.c(["Open to candidates in Spain, remote."]), cfg)[0], "eligible")
+
+    def test_exclude_regex_still_drops(self):
+        cfg = dict(CFG, title_exclude_regex="security")
+        self.assertEqual(report.classify(self.c(["Open to candidates in Spain."], "Security Researcher"), cfg)[:2],
+                         ("drop", "not-research"))
+
     def test_eligible_with_quote(self):
         v, code, q = report.classify(self.c(["Open to candidates in Spain, remote."]), CFG)
         self.assertEqual((v, code), ("eligible", None)); self.assertIn("Spain", q)

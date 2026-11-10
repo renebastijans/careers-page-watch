@@ -22,7 +22,7 @@ def place_regex(cfg):
 
 def classify(c, cfg):
     """Returns (verdict, code, quote): verdict 'eligible' | 'verify' | 'drop'."""
-    if re.search(cfg["title_exclude_regex"], c.get("title") or "", re.I):
+    if cfg["title_exclude_regex"] and re.search(cfg["title_exclude_regex"], c.get("title") or "", re.I):  # empty = no exclusions
         return ("drop", "not-research", f"the title matches your exclude words ({cfg['title_exclude_regex']})")
     lines = c.get("policy_lines") or []
     if not lines:
