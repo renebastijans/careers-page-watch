@@ -15,7 +15,7 @@ It is not a job search engine and will not find roles at companies you haven't l
 
 **It sits alongside your job alerts, not in place of them.** Keep the alerts and searches you already use. This adds a second view: it reads employers' own boards directly, so you see roles your usual searches may not surface. It reads the fine print of each one, so you can tell which are worth your time before you spend hours on an application. It narrows the pile; it does not guarantee an ad is accurate, so check the ad before you apply.
 
-Free, MIT-licensed, best effort, no support. **Status: v0.1.0, an early release, tested on macOS (Windows untested).**
+Free, MIT-licensed, best effort, no support. **Status: v0.1.1, an early release, tested on macOS (Windows untested).**
 
 ## What it looks like
 

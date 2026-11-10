@@ -1,9 +1,11 @@
 # Changelog
 
-## Unreleased
+## 0.1.1 (2026-11-10)
 
 - Fix: an empty `title_exclude_regex` ("") no longer drops every ad as "not-research"; empty now means no exclusions.
 - Optional `custom_boards.py` in your data folder lets you add your own reader for employers on other systems (see `docs/own-instance.md`).
+- README: says who it is for beyond active job hunters, and how to keep the employer list fresh.
+- Internal: removed an unused `data` argument from `common.get`.
 
 ## 0.1.0 (2026-11-08)
 
