@@ -6,7 +6,12 @@ Job boards often get location wrong. A role listed as "United States" may be ope
 
 This tool reads the ad's own text, quotes the line that decides whether you can apply from where you live, and tells you only what is new, changed or closed.
 
-**Who it's for.** People running a *targeted* search: you have, or can build, a list of employers (tens, not thousands) whose jobs you want to follow, and where you can work is a real constraint (a country, a time zone, a limit on office days). It is not a job search engine and it will not find roles at companies you haven't listed, except through the optional Claude layer's discovery step.
+**Who it's for.** People who follow a *short list of employers* (tens, not thousands), with a real constraint on where you can work (a country, a time zone, a limit on office days). That covers two kinds of reader:
+
+- **You're searching now.** It reads each ad's own text, so you hear about roles you can actually apply for from where you live.
+- **You're not looking, but you'd move for the right role.** Keep a list of employers you rate, run it weekly, and hear only when a fitting role opens, changes or closes. Quiet weeks stay quiet. Nothing is sent to anyone, and nobody is told you're watching.
+
+It is not a job search engine and will not find roles at companies you haven't listed, except through the optional Claude layer's discovery step.
 
 **It sits alongside your job alerts, not in place of them.** Keep the alerts and searches you already use. This adds a second view: it reads employers' own boards directly, so you see roles your usual searches may not surface. It reads the fine print of each one, so you can tell which are worth your time before you spend hours on an application. It narrows the pile; it does not guarantee an ad is accurate, so check the ad before you apply.
 
@@ -86,6 +91,8 @@ python3 init_data.py    # 1. create your private data folder (gitignored)
 The [configuration table](#configuration) explains each setting. Check the install with `python3 -W ignore -m unittest discover -s tests`.
 
 ### Good to know
+
+**Keep your list fresh.** The tool only sees the employers you list, so a quiet report can mean a short list, not a quiet market. Add an employer whenever you hear of one worth watching: in Claude, ask it to look up the company's board and add it to your list; on your own, run `python3 find_board.py "<careers page address>"` and add the row to `data/companies.csv`. Aim for a list that still reflects who you'd consider this month.
 
 To stop or remove it later, see [docs/uninstall.md](docs/uninstall.md).
 
