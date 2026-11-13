@@ -1,19 +1,21 @@
 # careers-page-watch
 
-**Watches company career pages and reads each ad's own fine print, so you only hear about roles you can actually apply for.**
+**Watches company career pages and checks each ad's own text against your criteria, so you only hear about roles that fit.**
 
-Job boards often get location wrong. A role listed as "United States" may be open across Europe; one listed as "Remote" may mean a hub twice a week. Alerts that trust the location field either bury you in noise or hide roles you could have had.
+Job boards are good at listing roles and poor at telling you whether a role fits you. The fields are coarse: "Remote" can mean a hub twice a week, "United States" can be open across Europe, and pay, visa sponsorship, travel and seniority are often only in the paragraphs of the ad. Alerts that trust those fields either bury you in noise or hide roles you would have wanted.
 
-This tool reads the ad's own text, quotes the line that decides whether you can apply from where you live, and tells you only what is new, changed or closed.
+This tool reads the ad itself and checks it against what you told it you need: the kind of role and level, where you can work and how many office days you accept, your pay floor, sectors and employers you want or won't touch, and any hard rules of your own (visa sponsorship, no relocation, limited travel). For each ad it quotes the line that decided the verdict, and it tells you only what is new, changed or closed.
 
-**Who it's for.** People who follow a *short list of employers* (tens, not thousands), with a real constraint on where you can work (a country, a time zone, a limit on office days). That covers two kinds of reader:
+It works in two ways. On its own, with plain Python and no account, it checks title, place and office days. With Claude added (optional, needs a paid plan), it also reads pay and applies your own hard rules (visa sponsorship, travel, anything else you tell it).
 
-- **You're searching now.** It reads each ad's own text, so you hear about roles you can actually apply for from where you live.
+**Who it's for.** People who follow a *short list of employers* (tens, not thousands) and have criteria that a job board's filters can't express. That covers two kinds of reader:
+
+- **You're searching now.** You hear about roles that meet your criteria, with the evidence from the ad, so you can tell which are worth your time before you spend hours on an application.
 - **You're not looking, but you'd move for the right role.** Keep a list of employers you rate, run it weekly, and hear only when a fitting role opens, changes or closes. Quiet weeks stay quiet. Nothing is sent to anyone, and nobody is told you're watching.
 
 It is not a job search engine and will not find roles at companies you haven't listed, except through the optional Claude layer's discovery step.
 
-**It sits alongside your job alerts, not in place of them.** Keep the alerts and searches you already use. This adds a second view: it reads employers' own boards directly, so you see roles your usual searches may not surface. It reads the fine print of each one, so you can tell which are worth your time before you spend hours on an application. It narrows the pile; it does not guarantee an ad is accurate, so check the ad before you apply.
+**It sits alongside your job alerts, not in place of them.** Keep the alerts and searches you already use. This adds a second view: it reads employers' own boards directly, so you see roles your usual searches may not surface. It narrows the pile; it does not guarantee an ad is accurate, so check the ad before you apply.
 
 Free, MIT-licensed, best effort, no support. **Status: v0.1.1, an early release, tested on macOS (Windows untested).**
 
@@ -30,6 +32,12 @@ Another ad on the same board, a London role, says only "We are an office-first c
 
 ```
 - Example Co, Lead Researcher: `onsite-required` "We are an office-first company."
+```
+
+Location is one criterion among several. With the Claude layer, pay is read the same way. Suppose your floor is €95,000 and a third ad says "Salary range: €70,000 to €80,000". It is dropped with the code and the line, and an ad with no pay stated is kept and flagged as unlisted (or dropped, as you choose):
+
+```
+- Example Co, Senior Researcher: `below-floor` "Salary range: €70,000 to €80,000."
 ```
 
 If the ad says nothing about where you can work, you get `[verify location]` instead of a guess. When the ad is silent and the board names only other places (for example "Remote, US"), the ad goes under "Probably not open to you": still listed, never deleted, but out of the way. On a day with nothing new, the report is one line.
